@@ -8,24 +8,24 @@ services:
     volumes:
       - ./mysql:/var/lib/mysql
     ports:
-      - 8082:8082
+      - 8081:3306
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=test
+      - MYSQL_DATABASE=app
       - MYSQL_USER=test
       - MYSQL_PASSWORD=test
 
   #phpMyAdmin用コンテナ
-  phpmyadmin:
-    container_name: voting-app-php-phpMyAdmin
-    depends_on:
-      - mysql
-    image: phpmyadmin/phpmyadmin
-    environment:
-      PMA_HOST: mysql
-    restart: always
-    ports:
-      - 8081:80
+  # phpmyadmin:
+  #   container_name: voting-app-php-phpMyAdmin
+  #   depends_on:
+  #     - mysql
+  #   image: phpmyadmin/phpmyadmin
+  #   environment:
+  #     PMA_HOST: mysql
+  #   restart: always
+  #   ports:
+  #     - 8082:80
 
   #php用コンテナ
   php:
