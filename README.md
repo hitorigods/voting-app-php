@@ -6,8 +6,8 @@
 docker-compose up -d
 ```
 
-1. /mysql/はローカルで構築
-1. DB の test は削除しておく？
+1. /db/はローカルで構築
+1. php のログファイルをローカルに残す方法は？
 
 ## WEB URL
 
@@ -15,7 +15,11 @@ http://localhost:8080/
 
 ## MySQL
 
+### 接続
+
 localhost:8081
+
+### ルートアカウント
 
 root@root
 

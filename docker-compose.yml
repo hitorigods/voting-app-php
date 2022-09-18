@@ -1,39 +1,24 @@
 version: '3'
 
 services:
-  #MySQL用コンテナ
-  mysql:
-    container_name: voting-app-php-mysql
+  #DB用コンテナ
+  db:
+    container_name: voting-app-php-db
     image: mysql:5.7
     volumes:
-      - ./mysql:/var/lib/mysql
+      - ./db:/var/lib/mysql
     ports:
       - 8081:3306
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=app
-      - MYSQL_USER=test
-      - MYSQL_PASSWORD=test
 
-  #phpMyAdmin用コンテナ
-  # phpmyadmin:
-  #   container_name: voting-app-php-phpMyAdmin
-  #   depends_on:
-  #     - mysql
-  #   image: phpmyadmin/phpmyadmin
-  #   environment:
-  #     PMA_HOST: mysql
-  #   restart: always
-  #   ports:
-  #     - 8082:80
-
-  #php用コンテナ
-  php:
-    container_name: voting-app-php-apache
+  #app用コンテナ
+  public:
+    container_name: voting-app-php-public
     build: ./php
     volumes:
-      - ./html:/var/www/html
+      - ./public:/var/www/html
     ports:
       - 8080:80
     depends_on:
-      - mysql
+      - db
