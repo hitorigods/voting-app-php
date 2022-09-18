@@ -1,13 +1,13 @@
 # 投票アプリ for PHP
 
-## docker
+## docker 起動
 
 ```
 docker-compose up -d
 ```
 
-i. /mysql/はローカルで構築
-i. DB の test は削除しておく？
+1. /mysql/はローカルで構築
+1. DB の test は削除しておく？
 
 ## WEB URL
 
@@ -16,16 +16,15 @@ http://localhost:8080/
 ## MySQL
 
 localhost:8081
-root
-root
+
+root@root
 
 ## DB 初期登録
 
-`/_material/create.sql`を DBeaver で登録
+`/!_MATERIAL/create.sql`の内容を DBeaver にて登録
 
-i. DB 名は app
-i. ユーザーは test:test
-
-```
-CREATE USER IF NOT EXISTS 'test'@'localhost' IDENTIFIED BY 'test';
-```
+1. DB 名は app
+1. ユーザーは test:test
+   ```
+   CREATE USER IF NOT EXISTS 'test'@'localhost' IDENTIFIED BY 'test';
+   ```
