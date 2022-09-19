@@ -1,28 +1,35 @@
 <?php
 require_once 'config.php';
 
-require_once 'src/partials/header.php';
+// Library
+require_once BASE_SOURCE . 'libs/helper.php';
+require_once BASE_SOURCE . 'libs/auth.php';
+require_once BASE_SOURCE . 'libs/router.php';
 
-$rpath = str_replace(BASE_CONTEXT_PATH, '', $URI);
-$method = strtolower($_SERVER['REQUEST_METHOD']);
+// Model
+require_once BASE_SOURCE . 'models/abstract.php';
+require_once BASE_SOURCE . 'models/user.php';
 
-router($rpath, $method);
+// Message
+require_once BASE_SOURCE . 'libs/message.php';
 
-function router($rpath, $method) {
-	if ($rpath === '') {
-		$rpath = 'home';
-	}
+// DB
+require_once BASE_SOURCE . 'db/datasource.php';
+require_once BASE_SOURCE . 'db/user.query.php';
 
-	$targetFile = BASE_SOURCE .  "controllers/{$rpath}.php";
+use function lib\router;
 
-	if (!file_exists($targetFile)) {
-		require_once BASE_SOURCE . 'views/404.php';
-		return;
-	}
-	require_once $targetFile;
+session_start();
 
-	$fn = "\\controllers\\{$rpath}\\{$method}";
-	$fn();
+try {
+	require_once BASE_SOURCE . 'partials/header.php';
+
+	$rpath = str_replace(BASE_CONTEXT_PATH, '', CURRENT_URI);
+	$method = strtolower($_SERVER['REQUEST_METHOD']);
+
+	router($rpath, $method);
+
+	require_once BASE_SOURCE . 'partials/footer.php';
+} catch (Throwable $e) {
+	die('<h1>致命的なエラーが発生しました。</h1>');
 }
-
-require_once 'src/partials/footer.php';
