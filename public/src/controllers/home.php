@@ -2,6 +2,9 @@
 
 namespace controllers\home;
 
+use db\TopicQuery;
+
 function get() {
-	require_once BASE_SOURCE . 'views/home.php';
+	$topics = TopicQuery::fetchPublishedTopics();
+	\view\home\index($topics);
 }

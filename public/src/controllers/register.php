@@ -7,7 +7,7 @@ use lib\Massage;
 use model\UserModel;
 
 function get() {
-	require_once BASE_SOURCE . 'views/register.php';
+	\view\register\index();
 }
 
 function post() {

@@ -1,47 +1,52 @@
-<!DOCTYPE html>
-<html lang="ja">
+<?php
 
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>投票アプリ</title>
+namespace partial;
 
-	<link rel="stylesheet" href="<?php echo BASE_CSS_PATH; ?>style.css">
-</head>
+use lib\Auth;
+use lib\Massage;
 
-<body>
-	<header>
-		<div>
-			<?php
+function header() {
+?>
+	<!DOCTYPE html>
+	<html lang="ja">
 
-			use lib\Auth;
-			use lib\Massage;
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>投票アプリ</title>
 
-			if (Auth::isLogin()) {
-				echo 'ログイン中です。';
-			} else {
-				echo 'ログインしていません。';
-			}
-			?>
-		</div>
+		<link rel="stylesheet" href="<?php echo BASE_CSS_PATH; ?>style.css">
+	</head>
 
-		<nav>
-			<ul>
-				<li><a href="/">HOME</a></li>
-				<?php if (!Auth::isLogin()) { ?>
-					<li><a href="/login">ログイン</a></li>
-					<li><a href="/register">新規登録</a></li>
-				<?php } ?>
-				<?php if (Auth::isLogin()) { ?>
-					<li><a href="/logout">ログアウト</a></li>
-				<?php } ?>
-			</ul>
-		</nav>
+	<body>
+		<header>
+			<div>
+				<?php
+				if (Auth::isLogin()) {
+					echo 'ログイン中です。';
+				} else {
+					echo 'ログインしていません。';
+				}
+				?>
+			</div>
 
-		<div>
-			<ul>
-				<?php Massage::flush(); ?>
-			</ul>
-		</div>
-	</header>
+			<nav>
+				<ul>
+					<li><a href="<?php the_url('/') ?>">HOME</a></li>
+					<?php if (Auth::isLogin()) : ?>
+						<li><a href="<?php the_url('topic/create') ?>">投稿</a></li>
+						<li><a href="<?php the_url('topic/archive') ?>">過去の投稿</a></li>
+						<li><a href="<?php the_url('logout') ?>">ログアウト</a></li>
+					<?php else : ?>
+						<li><a href="<?php the_url('login') ?>">ログイン</a></li>
+						<li><a href="<?php the_url('register') ?>">新規登録</a></li>
+					<?php endif; ?>
+				</ul>
+			</nav>
+
+			<?php Massage::flush(); ?>
+		</header>
+
+		<main>
+		<?php } ?>

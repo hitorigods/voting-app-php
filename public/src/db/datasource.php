@@ -30,11 +30,6 @@ class DataSource {
 		}
 	}
 
-	public function execute($sql = "", $params = []) {
-		$this->executeSql($sql, $params);
-		return  $this->sqlResult;
-	}
-
 	public function selectOne($sql = "", $params = [], $type = '', $cls = '') {
 		$result = $this->select($sql, $params, $type, $cls);
 		return count($result) > 0 ? $result[0] : false;
@@ -50,6 +45,11 @@ class DataSource {
 
 	public function rollback() {
 		$this->conn->rollback();
+	}
+
+	public function execute($sql = "", $params = []) {
+		$this->executeSql($sql, $params);
+		return  $this->sqlResult;
 	}
 
 	private function executeSql($sql, $params) {

@@ -23,7 +23,7 @@ class UserModel extends AbstractModel {
 				Massage::push(Massage::ERROR, 'ユーザーIDは10桁以下で入力してください。');
 				$isValid = false;
 			}
-			if (!isAlnum($value)) {
+			if (!is_alnum($value)) {
 				Massage::push(Massage::ERROR, 'ユーザーIDは半角英数字で入力してください。');
 				$isValid = false;
 			}
@@ -47,7 +47,7 @@ class UserModel extends AbstractModel {
 				Massage::push(Massage::ERROR, 'パスワードは4桁以上で入力してください。');
 				$isValid = false;
 			}
-			if (!isAlnum($value)) {
+			if (!is_alnum($value)) {
 				Massage::push(Massage::ERROR, 'パスワードは半角英数字で入力してください。');
 				$isValid = false;
 			}

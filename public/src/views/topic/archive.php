@@ -1,19 +1,20 @@
 <?php
 
-namespace view\home;
+namespace view\topic\archive;
 
 function index($topics) {
-	$topic = array_shift($topics);
-
-	\partial\topic_single($topic, true);
 ?>
+	<div class="g-title">
+		<h1 class="g-title_name">過去の投稿</h1>
+	</div>
+
 	<div class="c-articles">
 		<?php if (count($topics) > 0) : ?>
 			<ul class="c-articles_items">
 				<?php
 				foreach ($topics as $topic) {
-					$url = get_url("topic/detail?topic_id={$topic->id}");
-					\partial\topic_article($topic, $url, false);
+					$url = get_url("topic/edit?topic_id={$topic->id}");
+					\partial\topic_article($topic, $url, true);
 				}
 				?>
 			</ul>
@@ -23,4 +24,6 @@ function index($topics) {
 			</div>
 		<?php endif; ?>
 	</div>
-<?php } ?>
+<?php
+
+}

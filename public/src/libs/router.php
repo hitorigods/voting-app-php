@@ -4,12 +4,12 @@ namespace lib;
 
 use Throwable;
 
-
-function router($rpath, $method) {
+function route($rpath, $method) {
 	try {
 		if ($rpath === '') {
 			$rpath = 'home';
 		}
+
 
 		$targetFile = BASE_SOURCE .  "controllers/{$rpath}.php";
 
@@ -18,6 +18,8 @@ function router($rpath, $method) {
 			return;
 		}
 		require_once $targetFile;
+
+		$rpath = str_replace('/', '\\', $rpath);
 
 		$fn = "\\controllers\\{$rpath}\\{$method}";
 		$fn();

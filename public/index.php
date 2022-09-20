@@ -9,6 +9,8 @@ require_once BASE_SOURCE . 'libs/router.php';
 // Model
 require_once BASE_SOURCE . 'models/abstract.php';
 require_once BASE_SOURCE . 'models/user.php';
+require_once BASE_SOURCE . 'models/topic.php';
+require_once BASE_SOURCE . 'models/comment.php';
 
 // Message
 require_once BASE_SOURCE . 'libs/message.php';
@@ -16,20 +18,37 @@ require_once BASE_SOURCE . 'libs/message.php';
 // DB
 require_once BASE_SOURCE . 'db/datasource.php';
 require_once BASE_SOURCE . 'db/user.query.php';
+require_once BASE_SOURCE . 'db/topic.query.php';
+require_once BASE_SOURCE . 'db/comment.query.php';
 
-use function lib\router;
+// Partial
+require_once BASE_SOURCE . 'partials/topic-articles.php';
+require_once BASE_SOURCE . 'partials/topic-single.php';
+require_once BASE_SOURCE . 'partials/header.php';
+require_once BASE_SOURCE . 'partials/footer.php';
+
+// View
+require_once BASE_SOURCE . 'views/home.php';
+require_once BASE_SOURCE . 'views/login.php';
+require_once BASE_SOURCE . 'views/register.php';
+require_once BASE_SOURCE . 'views/topic/archive.php';
+require_once BASE_SOURCE . 'views/topic/detail.php';
+
+use function lib\route;
 
 session_start();
 
 try {
-	require_once BASE_SOURCE . 'partials/header.php';
+	\partial\header();
 
-	$rpath = str_replace(BASE_CONTEXT_PATH, '', CURRENT_URI);
+	$url = parse_url(CURRENT_URI);
+	$rpath = preg_replace("/^\//", '', $url['path']);
+	// $rpath = str_replace(BASE_CONTEXT_PATH, '', $url['path']);
 	$method = strtolower($_SERVER['REQUEST_METHOD']);
 
-	router($rpath, $method);
+	route($rpath, $method);
 
-	require_once BASE_SOURCE . 'partials/footer.php';
+	\partial\footer();
 } catch (Throwable $e) {
 	die('<h1>致命的なエラーが発生しました。</h1>');
 }

@@ -1,6 +1,5 @@
 <?php
-$URI = $_SERVER['REQUEST_URI'];
-define('CURRENT_URI', $URI);
+define('CURRENT_URI', $_SERVER['REQUEST_URI']);
 
 define('BASE_CONTEXT_PATH', '/');
 define('BASE_ASSETS_PATH', BASE_CONTEXT_PATH . 'assets/');

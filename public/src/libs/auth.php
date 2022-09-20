@@ -94,4 +94,11 @@ class Auth {
 		}
 		return true;
 	}
+
+	public static function requireLoin() {
+		if (!static::isLogin()) {
+			Massage::push(Massage::ERROR, 'ログインしてください。');
+			redirect('login');
+		}
+	}
 }
