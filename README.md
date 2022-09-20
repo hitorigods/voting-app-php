@@ -1,5 +1,7 @@
 # 投票アプリ by PHP
 
+PHP、Apache、MySQL の Docker 環境でのノーフレームワーク構築
+
 ## docker 起動
 
 ```
@@ -54,8 +56,14 @@ https://network-beginner.xyz/mysql_error_connection_refused_2002
 
 https://teratail.com/questions/116377
 
+※※※↑↑↑ 解決 ↑↑↑※※※
+
 ## TODO
 
 - ~~DB の IP が起動の度に変わるので動的に設置する~~
+- ENV 設定
+- 公開サーバーを用意してアップ
+  - サーバー選定
+  - 自動デプロイできる？
 - ER 図を Git に貼る
 - php のログファイルをローカルに残す
