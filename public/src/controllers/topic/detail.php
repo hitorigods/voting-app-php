@@ -11,10 +11,12 @@ function get() {
 	$topic = new TopicModel;
 	$topic->id = get_param('topic_id', null, false);
 
+	TopicQuery::incrementViewCount($topic);
+
 	$fetchedTopic = TopicQuery::fetchById($topic);
 	$comments = CommentQuery::fetchByTopicId($topic);
 
-	if (!$fetchedTopic) {
+	if (empty($fetchedTopic) || !$fetchedTopic->published) {
 		Massage::push(Massage::ERROR, 'トピックが見つかりません。');
 		redirect('404');
 	}

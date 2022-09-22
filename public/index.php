@@ -33,6 +33,7 @@ require_once BASE_SOURCE . 'views/login.php';
 require_once BASE_SOURCE . 'views/register.php';
 require_once BASE_SOURCE . 'views/topic/archive.php';
 require_once BASE_SOURCE . 'views/topic/detail.php';
+require_once BASE_SOURCE . 'views/topic/edit.php';
 
 use function lib\route;
 

@@ -18,7 +18,10 @@ services:
     build: ./php
     volumes:
       - ./public:/var/www/html
+      - ./php/php.ini:/usr/local/etc/php/php.ini
     ports:
       - 8080:80
     depends_on:
       - db
+    tty: true
+    stdin_open: true

@@ -4,6 +4,7 @@ namespace lib;
 
 use Throwable;
 
+use db\TopicQuery;
 use db\UserQuery;
 use model\UserModel;
 
@@ -95,10 +96,21 @@ class Auth {
 		return true;
 	}
 
-	public static function requireLoin() {
+	public static function requireLogin() {
 		if (!static::isLogin()) {
 			Massage::push(Massage::ERROR, 'ログインしてください。');
 			redirect('login');
+		}
+	}
+
+	public static function hasPermission($topic_id, $user) {
+		return TopicQuery::isUserOwnTopic($topic_id, $user);
+	}
+
+	public static function requirePermission($topic_id, $user) {
+		if (!static::hasPermission($topic_id, $user)) {
+			Massage::push(Massage::ERROR, '編集権限がありません。ログインして再度試してみてください。');
+			// redirect('login');
 		}
 	}
 }

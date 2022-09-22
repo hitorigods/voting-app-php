@@ -41,13 +41,13 @@ function topic_main($topic, $isFromHome) {
 ?>
 	<div class="c-single_head">
 		<?php if ($isFromHome) : ?>
-			<h1 class="c-single_title">
+			<h2 class="c-single_title">
 				<a href="<?php the_url("topic/detail?topic_id={$topic->id}"); ?>">
 					<?php echo $topic->title; ?>
 				</a>
-			</h1>
+			</h2>
 		<?php else : ?>
-			<h2 class="c-single_title"><?php echo $topic->title; ?></h2>
+			<h1 class="c-single_title"><?php echo $topic->title; ?></h1>
 		<?php endif; ?>
 		<p class="c-single_note">
 			<?php if (!empty($topic->nickname)) { ?>

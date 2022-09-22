@@ -16,8 +16,9 @@ RUN apt-get update \
     libfreetype6-dev \
     libjpeg-dev \
     libonig-dev \
-    && docker-php-ext-install pdo pdo_mysql mysqli zip mbstring && \
-		pecl install xdebug && \
-    docker-php-ext-enable xdebug
+    && docker-php-ext-install pdo pdo_mysql mysqli zip mbstring
 
 RUN  a2enmod rewrite
+
+RUN pecl install xdebug \
+  && docker-php-ext-enable xdebug

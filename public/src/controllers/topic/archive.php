@@ -8,7 +8,7 @@ use lib\Massage;
 use model\UserModel;
 
 function get() {
-	Auth::requireLoin();
+	Auth::requireLogin();
 
 	$user = UserModel::getSession();
 

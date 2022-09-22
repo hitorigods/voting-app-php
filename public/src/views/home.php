@@ -4,9 +4,13 @@ namespace view\home;
 
 function index($topics) {
 	$topic = array_shift($topics);
-
-	\partial\topic_single($topic, true);
 ?>
+	<div class="g-title">
+		<h1 class="g-title_name">投票アプリ</h1>
+	</div>
+	<?php
+	\partial\topic_single($topic, true);
+	?>
 	<div class="c-articles">
 		<?php if (count($topics) > 0) : ?>
 			<ul class="c-articles_items">
