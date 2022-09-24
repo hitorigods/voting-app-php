@@ -3,6 +3,7 @@
 namespace view\home;
 
 function index($topics) {
+	$topics = escape($topics);
 	$topic = array_shift($topics);
 ?>
 	<div class="g-title">

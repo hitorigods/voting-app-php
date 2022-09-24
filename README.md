@@ -58,6 +58,38 @@ https://teratail.com/questions/116377
 
 ※※※↑↑↑ 解決 ↑↑↑※※※
 
+## X-Debug の VSCODE 対応
+
+X-Debug のバージョン 3 でポートが 9003 に変更されているので注意
+
+### バージョン確認方法
+
+`public`をコンテナ名に変更
+
+```
+docker-compose exec public php -v
+```
+
+#### 参考
+
+[【Xdebug】Docker+PHP+VSCode でデバッグする方法](https://ichi-station.com/php-xdebug-vscode-docker/)
+
+↑ で`launch.json`の`"pathMappings"`のパスが間違えている？（`"/var/www/html/"`）
+
+```
+"pathMappings": {
+   "var/www/html/": "${workspaceRoot}/src"
+}
+```
+
+↓ に変更
+
+```
+"pathMappings": {
+   "/var/www/html/": "${workspaceRoot}/public"
+}
+```
+
 ## TODO
 
 - ~~DB の IP が起動の度に変わるので動的に設置する~~

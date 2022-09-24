@@ -28,3 +28,19 @@ function the_url($path) {
 function is_alnum($value) {
 	return preg_match("/^[a-zA-Z0-9]+$/", $value);
 }
+
+function escape($data) {
+	if (is_array($data)) {
+		foreach ($data as $prop => $val) {
+			$data[$prop] = escape($val);
+		}
+		return $data;
+	} else if (is_object($data)) {
+		foreach ($data as $prop => $val) {
+			$data->$prop = escape($val);
+		}
+		return $data;
+	} else {
+		return htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
+	}
+}

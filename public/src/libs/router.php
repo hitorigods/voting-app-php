@@ -26,6 +26,6 @@ function route($rpath, $method) {
 	} catch (Throwable $e) {
 		Massage::push(Massage::DEBUG, $e->getMessage());
 		Massage::push(Massage::ERROR, '存在しないURLです。');
-		require_once BASE_SOURCE . 'views/404.php';
+		redirect('404');
 	}
 }

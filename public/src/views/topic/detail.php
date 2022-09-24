@@ -3,6 +3,9 @@
 namespace view\topic\detail;
 
 function index($topic, $comments) {
+	$topic = escape($topic);
+	$comments = escape($comments);
+
 	\partial\topic_single($topic, false);
 
 	if (!empty($comments)) :

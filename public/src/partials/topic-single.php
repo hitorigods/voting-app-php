@@ -90,27 +90,27 @@ function comment_form($topic) {
 				<form action="<?php echo the_url('topic/detail'); ?>" method="POST" class="c-form2_form">
 					<input type="hidden" name="topic_id" value="<?php echo $topic->id; ?>">
 					<div class="c-form2_block">
-						<textarea name="" class="c-form2_textarea"></textarea>
+						<textarea name="body" class="c-form2_textarea"></textarea>
 					</div>
 					<div class="c-form2_buttom">
 						<div class="c-form2_radio c-radio">
 							<ul class="c-radio_items">
 								<li class="c-radio_item">
 									<label class="c-radio_label">
-										<input type="radio" name="" checked class="c-radio_input">
+										<input type="radio" name="agree" value="1" checked class="c-radio_input">
 										<span class="c-radio_value">賛成</span>
 									</label>
 								</li>
 								<li class="c-radio_item">
 									<label class="c-radio_label">
-										<input type="radio" name="" class="c-radio_input">
+										<input type="radio" name="agree" value="0" class="c-radio_input">
 										<span class="c-radio_value">反対</span>
 									</label>
 								</li>
 							</ul>
 						</div>
 						<div class="c-button2">
-							<button class="c-form2_submit c-button2_box">
+							<button type="submit" class="c-form2_submit c-button2_box">
 								<span class="c-button2_label">送信</span>
 							</button>
 						</div>

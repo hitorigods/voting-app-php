@@ -1,6 +1,6 @@
 <?php
 
-namespace controllers\topic\edit;
+namespace controllers\topic\create;
 
 use Throwable;
 
@@ -15,20 +15,14 @@ function get() {
 
 	$topic = TopicModel::getSessionAndFlush();
 
-	if (!empty($topic)) {
-		\view\topic\edit\index($topic, true);
-		return;
+	if (empty($topic)) {
+		$topic = new TopicModel;
+		$topic->id = -1;
+		$topic->title = '';
+		$topic->published = 1;
 	}
 
-	$topic = new TopicModel;
-	$topic->id = get_param('topic_id', null, false);
-
-	$user = UserModel::getSession();
-	Auth::requirePermission($topic->id, $user);
-
-	$fetchedTopic = TopicQuery::fetchById($topic);
-
-	\view\topic\edit\index($fetchedTopic, true);
+	\view\topic\edit\index($topic, false);
 }
 
 function post() {
@@ -39,21 +33,19 @@ function post() {
 	$topic->title = get_param('title', null);
 	$topic->published = get_param('published', null);
 
-	$user = UserModel::getSession();
-	Auth::requirePermission($topic->id, $user);
-
 	try {
-		$isSuccess = TopicQuery::update($topic);
+		$user = UserModel::getSession();
+		$isSuccess = TopicQuery::insert($topic, $user);
 	} catch (Throwable $e) {
 		Massage::push(Massage::DEBUG, $e->getMessage());
 		$isSuccess = false;
 	}
 
 	if ($isSuccess) {
-		Massage::push(Massage::INFO, 'トピックの更新に成功しました。');
+		Massage::push(Massage::INFO, 'トピックの登録に成功しました。');
 		redirect('topic/archive');
 	} else {
-		Massage::push(Massage::ERROR, 'トピックの更新に失敗しました。');
+		Massage::push(Massage::ERROR, 'トピックの登録に失敗しました。');
 		TopicModel::setSession($topic);
 		redirect(GO_REFERER);
 	}

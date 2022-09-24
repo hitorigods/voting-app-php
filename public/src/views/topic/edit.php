@@ -2,10 +2,12 @@
 
 namespace view\topic\edit;
 
-function index($topic) {
+function index($topic, $isEdit) {
+	$pageTItle = $isEdit ? 'トピック編集' : 'トピック作成';
+
 ?>
 	<div class="g-title">
-		<h1 class="g-title_name">トピック更新</h1>
+		<h1 class="g-title_name"><?php echo $pageTItle; ?></h1>
 	</div>
 
 	<div class="g-form">

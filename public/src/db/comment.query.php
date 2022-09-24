@@ -7,7 +7,7 @@ use model\CommentModel;
 
 class CommentQuery {
 	public static function fetchByTopicId($topic) {
-		if ($topic->isValidId()) {
+		if (!$topic->isValidId()) {
 			return false;
 		}
 
@@ -26,5 +26,24 @@ class CommentQuery {
 		], DataSource::CLS, CommentModel::class);
 
 		return $result;
+	}
+
+	public static function insert($comment) {
+		if (!($comment->isValidTopicId()
+			* $comment->isValidBody()
+			* $comment->isValidAgree()
+		)) {
+			return false;
+		}
+
+		$db = new DataSource;
+		$sql = 'INSERT INTO comments(topic_id, body, agree, user_id) VALUES (:topic_id, :body, :agree, :user_id);';
+
+		return $db->execute($sql, [
+			':topic_id' => $comment->topic_id,
+			':body' => $comment->body,
+			':agree' => $comment->agree,
+			':user_id' => $comment->user_id,
+		]);
 	}
 }

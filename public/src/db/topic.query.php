@@ -90,7 +90,12 @@ class TopicQuery {
 	}
 
 	public static function update($topic) {
-		// TODO 値のチェック
+		if (!($topic->isValidId()
+			* $topic->isValidTitle()
+			* $topic->isValidPublished()
+		)) {
+			return false;
+		}
 
 		$db = new DataSource;
 		$sql = 'UPDATE topics SET published = :published, title = :title WHERE id = :id;';
@@ -102,16 +107,41 @@ class TopicQuery {
 		]);
 	}
 
-	// public static function insert($user) {
-	// 	$db = new DataSource;
-	// 	$sql = 'INSERT INTO users(id, pwd, nickname) VALUES (:id, :pwd, :nickname);';
+	public static function insert($topic, $user) {
+		if (!($user->isValidId()
+			* $topic->isValidTitle()
+			* $topic->isValidPublished()
+		)) {
+			return false;
+		}
 
-	// 	$user->pwd = password_hash($user->pwd, PASSWORD_DEFAULT);
+		$db = new DataSource;
+		$sql = 'INSERT INTO topics(title, published, user_id) VALUES (:title, :published, :user_id);';
 
-	// 	return $db->execute($sql, [
-	// 		':id' => $user->id,
-	// 		':pwd' => $user->pwd,
-	// 		':nickname' => $user->nickname,
-	// 	]);
-	// }
+		return $db->execute($sql, [
+			':title' => $topic->title,
+			':published' => $topic->published,
+			':user_id' => $user->id,
+		]);
+	}
+
+	public static function incrementLikesOrDislikes($comment) {
+		if (!($comment->isValidTopicId()
+			* $comment->isValidAgree()
+		)) {
+			return false;
+		}
+
+		$db = new DataSource;
+
+		if ($comment->agree) {
+			$sql = 'UPDATE topics SET likes = likes + 1 WHERE id = :topic_id;';
+		} else {
+			$sql = 'UPDATE topics SET dislikes = dislikes + 1 WHERE id = :topic_id;';
+		}
+
+		return $db->execute($sql, [
+			':topic_id' => $comment->topic_id,
+		]);
+	}
 }

@@ -5,6 +5,7 @@ namespace model;
 use lib\Massage;
 
 class TopicModel extends AbstractModel {
+
 	public int $id;
 	public string $title;
 	public int $published;
@@ -12,83 +13,68 @@ class TopicModel extends AbstractModel {
 	public int $likes;
 	public int $dislikes;
 	public string $user_id;
-	public string $nickname;
 	public int $del_flg;
-
 	protected static $SESSION_NAME = '_topic';
 
 	public function isValidId() {
-		return true;
+		return static::validateId($this->id);
 	}
 
 	public static function validateId($value) {
-		return true;
+		$response = true;
+
+		if (empty($value) || !is_numeric($value)) {
+
+			Massage::push(Massage::ERROR, 'パラメータが不正です。');
+			$response = false;
+		}
+
+		return $response;
 	}
 
+	public function isValidTitle() {
+		return static::validateTitle($this->title);
+	}
 
-	// public static function validateId($value) {
-	// 	$isValid = true;
+	public static function validateTitle($value) {
+		$response = true;
 
-	// 	if (empty($value)) {
-	// 		Massage::push(Massage::ERROR, 'ユーザーIDを入力してください。');
-	// 		$isValid = false;
-	// 	} else {
-	// 		if (strlen($value) > 10) {
-	// 			Massage::push(Massage::ERROR, 'ユーザーIDは10桁以下で入力してください。');
-	// 			$isValid = false;
-	// 		}
-	// 		if (!is_alnum($value)) {
-	// 			Massage::push(Massage::ERROR, 'ユーザーIDは半角英数字で入力してください。');
-	// 			$isValid = false;
-	// 		}
-	// 	}
+		if (empty($value)) {
 
-	// 	return $isValid;
-	// }
+			Massage::push(Massage::ERROR, 'タイトルを入力してください。');
+			$response = false;
+		} else {
 
+			if (mb_strlen($value) > 30) {
 
+				Massage::push(Massage::ERROR, 'タイトルは30文字以内で入力してください。');
+				$response = false;
+			}
+		}
 
-	// public static function validatePassword($value) {
-	// 	$isValid = true;
+		return $response;
+	}
 
-	// 	if (empty($value)) {
-	// 		Massage::push(Massage::ERROR, 'パスワードを入力してください。');
-	// 		$isValid = false;
-	// 	} else {
-	// 		if (strlen($value) < 4) {
-	// 			Massage::push(Massage::ERROR, 'パスワードは4桁以上で入力してください。');
-	// 			$isValid = false;
-	// 		}
-	// 		if (!is_alnum($value)) {
-	// 			Massage::push(Massage::ERROR, 'パスワードは半角英数字で入力してください。');
-	// 			$isValid = false;
-	// 		}
-	// 	}
+	public function isValidPublished() {
+		return static::validatePublished($this->published);
+	}
 
-	// 	return $isValid;
-	// }
+	public static function validatePublished($value) {
+		$response = true;
 
-	// public function isValidPassword() {
-	// 	return static::validatePassword($this->pwd);
-	// }
+		if (!isset($value)) {
 
-	// public static function validateNickname($value) {
-	// 	$isValid = true;
+			Massage::push(Massage::ERROR, '公開するか選択してください。');
+			$response = false;
+		} else {
+			// 0、または1以外の時
+			if (!($value == 0 || $value == 1)) {
 
-	// 	if (empty($value)) {
-	// 		Massage::push(Massage::ERROR, 'ニックネームを入力してください。');
-	// 		$isValid = false;
-	// 	} else {
-	// 		if (mb_strlen($value) > 10) {
-	// 			Massage::push(Massage::ERROR, 'ニックネームは10桁以下で入力してください。');
-	// 			$isValid = false;
-	// 		}
-	// 	}
+				Massage::push(Massage::ERROR, '公開ステータスが不正です。');
+				$response = false;
+			}
+		}
 
-	// 	return $isValid;
-	// }
-
-	// public function isValidNickname() {
-	// 	return static::validateNickname($this->nickname);
-	// }
+		return $response;
+	}
 }

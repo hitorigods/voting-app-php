@@ -3,6 +3,7 @@
 namespace view\topic\archive;
 
 function index($topics) {
+	$topics = escape($topics);
 ?>
 	<div class="g-title">
 		<h1 class="g-title_name">過去の投稿</h1>
