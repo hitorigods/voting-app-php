@@ -2,7 +2,7 @@
 
 PHP、Apache、MySQL の Docker 環境でのノーフレームワーク構築
 
-![ER図](https://raw.githubusercontent.com/hitorigods/voting-app-php/bb62b3c74d2d3f0250aa92cdc0912c8742000a7e/!_MATERIAL/db-er.png)
+![ER図](https://github.com/hitorigods/voting-app-php/blob/main/!_MATERIAL/db-er.png?raw=true)
 
 ## docker 起動
 
@@ -95,7 +95,7 @@ docker-compose exec public php -v
 ## TODO
 
 - ~~DB の IP が起動の度に変わるので動的に設置する~~
-- ER 図を Git に貼る
+- ~~ER 図を Git に貼る~~
 - php のログファイルをローカルに残す
 - ENV 設定
 - 公開サーバーを用意してアップ
