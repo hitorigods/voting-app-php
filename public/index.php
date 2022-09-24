@@ -51,5 +51,5 @@ try {
 
 	\partial\footer();
 } catch (Throwable $e) {
-	die('<h1>致命的なエラーが発生しました。</h1>');
+	die('<h1 class="g-caution">致命的なエラーが発生しました。</h1>');
 }

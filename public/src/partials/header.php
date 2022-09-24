@@ -20,33 +20,62 @@ function header() {
 	</head>
 
 	<body>
-		<header>
-			<div>
-				<?php
-				if (Auth::isLogin()) {
-					echo 'ログイン中です。';
-				} else {
-					echo 'ログインしていません。';
-				}
-				?>
+		<header class="g-header">
+			<div class="g-header_inner u-inner">
+				<div class="g-header_main">
+					<p class="g-header_title">
+						<a href="<?php the_url('/') ?>">投票アプリ</a>
+					</p>
+				</div>
+				<div class="g-header_side">
+					<div class="g-header_status">
+						<?php
+						if (Auth::isLogin()) {
+							echo 'ログイン中です。';
+						} else {
+							echo 'ログインしてください。';
+						}
+						?>
+					</div>
+
+					<nav class="g-header_nav g-nav">
+						<ul class="g-nav_items">
+							<?php if (Auth::isLogin()) : ?>
+								<li class="g-nav_item">
+									<a href="<?php the_url('topic/create') ?>" class="g-nav_box">
+										<span class="g-nav_name">投稿</span>
+									</a>
+								</li>
+								<li class="g-nav_item">
+									<a href="<?php the_url('topic/archive') ?>" class="g-nav_box">
+										<span class="g-nav_name">過去の投稿</span>
+									</a>
+								</li>
+								<li class="g-nav_item">
+									<a href="<?php the_url('logout') ?>" class="g-nav_box">
+										<span class="g-nav_name">ログアウト</span>
+									</a>
+								</li>
+							<?php else : ?>
+								<li class="g-nav_item">
+									<a href="<?php the_url('login') ?>" class="g-nav_box">
+										<span class="g-nav_name">ログイン</span>
+									</a>
+								</li>
+								<li class="g-nav_item">
+									<a href="<?php the_url('register') ?>" class="g-nav_box">
+										<span class="g-nav_name">新規登録</span>
+									</a>
+								</li>
+							<?php endif; ?>
+						</ul>
+					</nav>
+					<!--nav-->
+				</div>
 			</div>
-
-			<nav>
-				<ul>
-					<li><a href="<?php the_url('/') ?>">HOME</a></li>
-					<?php if (Auth::isLogin()) : ?>
-						<li><a href="<?php the_url('topic/create') ?>">投稿</a></li>
-						<li><a href="<?php the_url('topic/archive') ?>">過去の投稿</a></li>
-						<li><a href="<?php the_url('logout') ?>">ログアウト</a></li>
-					<?php else : ?>
-						<li><a href="<?php the_url('login') ?>">ログイン</a></li>
-						<li><a href="<?php the_url('register') ?>">新規登録</a></li>
-					<?php endif; ?>
-				</ul>
-			</nav>
-
-			<?php Massage::flush(); ?>
 		</header>
 
-		<main>
+		<?php Massage::flush(); ?>
+
+		<main class="g-content">
 		<?php } ?>
