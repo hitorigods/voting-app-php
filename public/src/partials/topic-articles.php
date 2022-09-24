@@ -50,6 +50,7 @@ function topic_article($topic, $url, $withStatus = false) {
 					<?php } ?>
 				</ul>
 			</div>
+			<!--counts-->
 		</div>
 		<?php if ($url) {
 			echo '</a>';

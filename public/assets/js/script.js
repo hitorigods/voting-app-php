@@ -17,20 +17,21 @@ const Validate = {
 		if (!$targets) {
 			return;
 		}
+
+		$elements = document.querySelectorAll(Validate.selector.element);
+		if (!$elements) {
+			return;
+		}
+		$elements.forEach(($element) => {
+			Validate.submit($element);
+		});
+
 		$targets.forEach(($target) => {
 			$target.addEventListener('input', (event) => {
 				const $input = event.currentTarget;
 				const $error = $input.parentElement.querySelector(
 					Validate.selector.error
 				);
-
-				$elements = document.querySelectorAll(Validate.selector.element);
-				if (!$elements) {
-					return;
-				}
-				$elements.forEach(($element) => {
-					Validate.submit($element);
-				});
 
 				if (!$error) {
 					return;
@@ -46,7 +47,7 @@ const Validate = {
 					$input.classList.add(Validate.class.invalid);
 
 					if ($input.validity.valueMissing) {
-						$error.textContent = '値の入力が必須です。';
+						$error.textContent = '入力は必須です。';
 					} else if ($input.validity.tooShort) {
 						$error.textContent = `${$input.minLength}文字以上で入力してください。現在の文字数は${$input.value.length}です。`;
 					} else if ($input.validity.tooLong) {
@@ -77,3 +78,65 @@ const Validate = {
 	},
 };
 Validate.init();
+
+/**
+ * Graph
+ */
+const Graph = {
+	selector: {
+		element: '.js-graph',
+	},
+	attr: {
+		likes: 'data-graph-likes',
+		dislikes: 'data-graph-dislikes',
+	},
+	init: () => {
+		$elements = document.querySelectorAll(Graph.selector.element);
+		if (!$elements) {
+			return;
+		}
+		$elements.forEach(($element) => {
+			const ctx = $element.getContext('2d');
+
+			const likes = $element.attributes[Graph.attr.likes].value;
+			const dislikes = $element.attributes[Graph.attr.dislikes].value;
+			let data;
+
+			if (likes == 0 && dislikes == 0) {
+				data = {
+					labels: ['まだ投票がありません。'],
+					datasets: [
+						{
+							data: [1],
+							backgroundColor: ['#9ca3af'],
+						},
+					],
+				};
+			} else {
+				data = {
+					labels: ['賛成', '反対'],
+					datasets: [
+						{
+							data: [likes, dislikes],
+							backgroundColor: ['#34d399', '#f87171'],
+						},
+					],
+				};
+			}
+
+			new Chart(ctx, {
+				type: 'pie',
+				data: data,
+				options: {
+					legend: {
+						position: 'bottom',
+						labels: {
+							fontSize: 18,
+						},
+					},
+				},
+			});
+		});
+	},
+};
+Graph.init();

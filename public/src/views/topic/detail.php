@@ -34,6 +34,7 @@ function index($topic, $comments) {
 				<?php endforeach; ?>
 			</ul>
 		</div>
+		<!--comments-->
 <?php
 	endif;
 }

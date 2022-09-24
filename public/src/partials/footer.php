@@ -5,7 +5,7 @@ namespace partial;
 function footer() {
 ?>
 	</main>
-	<!--content-->
+	<!--main-->
 
 	<footer class="g-footer">
 		<div class="g-footer_inner u-inner">
@@ -14,6 +14,7 @@ function footer() {
 	</footer>
 	<!--footer-->
 
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<script src="<?php echo BASE_JS_PATH; ?>script.js"></script>
 	</body>
 

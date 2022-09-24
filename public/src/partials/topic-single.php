@@ -6,7 +6,7 @@ use lib\Auth;
 
 function topic_single($topic, $isFromHome) {
 ?>
-	<div class="c-single">
+	<section class="c-single">
 		<div class="c-single_inner u-inner">
 			<div class="c-single_column">
 				<div class="c-single_visual">
@@ -18,23 +18,15 @@ function topic_single($topic, $isFromHome) {
 					<?php comment_form($topic); ?>
 				</div>
 			</div>
-			<!--article-->
 		</div>
-	</div>
+	</section>
 	<!--single-->
 <?php
 }
 
 function topic_chart($topic) {
 ?>
-	<canvas data-chart-likes="<?php echo $topic->likes; ?>" data-chart-dislikes=<?php echo $topic->dislikes; ?>" class="c-single_graph js-chart"></canvas>
-	<style>
-		.c-single_graph {
-			width: 300px;
-			height: 300px;
-			background-color: #ddd;
-		}
-	</style>
+	<canvas data-graph-likes="<?php echo $topic->likes; ?>" data-graph-dislikes="<?php echo $topic->dislikes; ?>" class="c-single_graph js-graph"></canvas>
 <?php }
 
 function topic_main($topic, $isFromHome) {
@@ -78,6 +70,7 @@ function topic_main($topic, $isFromHome) {
 			<?php } ?>
 		</ul>
 	</div>
+	<!--counts-->
 <?php
 }
 
@@ -87,23 +80,23 @@ function comment_form($topic) {
 		<?php if (Auth::isLogin()) : ?>
 			<h3 class="c-single_title2">あなたは賛成？それとも反対？</h3>
 			<div class="c-form2">
-				<form action="<?php echo the_url('topic/detail'); ?>" method="POST" class="c-form2_form">
+				<form action="<?php echo the_url('topic/detail'); ?>" method="POST" autocomplete="off" class="c-form2_form js-validate">
 					<input type="hidden" name="topic_id" value="<?php echo $topic->id; ?>">
 					<div class="c-form2_block">
-						<textarea name="body" class="c-form2_textarea"></textarea>
+						<textarea name="body" rows="5" maxlength="100" class="c-form2_textarea"></textarea>
 					</div>
 					<div class="c-form2_buttom">
 						<div class="c-form2_radio c-radio">
 							<ul class="c-radio_items">
 								<li class="c-radio_item">
 									<label class="c-radio_label">
-										<input type="radio" name="agree" value="1" checked class="c-radio_input">
+										<input type="radio" name="agree" value="1" required checked class="c-radio_input">
 										<span class="c-radio_value">賛成</span>
 									</label>
 								</li>
 								<li class="c-radio_item">
 									<label class="c-radio_label">
-										<input type="radio" name="agree" value="0" class="c-radio_input">
+										<input type="radio" name="agree" value="0" required class="c-radio_input">
 										<span class="c-radio_value">反対</span>
 									</label>
 								</li>

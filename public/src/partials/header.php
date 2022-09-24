@@ -74,8 +74,9 @@ function header() {
 				</div>
 			</div>
 		</header>
+		<!--header-->
 
 		<?php Massage::flush(); ?>
 
-		<main class="g-content">
+		<main class="g-main">
 		<?php } ?>

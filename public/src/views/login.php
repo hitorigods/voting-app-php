@@ -11,7 +11,7 @@ function index() {
 	</div>
 	<!--title-->
 
-	<div class="g-main">
+	<div class="g-content">
 		<div class="c-form">
 			<div class="c-form_inner u-inner">
 				<form action="<?php echo CURRENT_URI; ?>" method="POST" autocomplete="off" class="c-form_form js-validate">
@@ -20,7 +20,7 @@ function index() {
 							<label class="c-form_label">
 								<span class="c-form_title">ユーザーID</span>
 								<span class="c-form_input c-input">
-									<input type="text" name="id" required minlength="4" maxlength="10" pattern="[a-zA-Z0-9]+" tabindex="1" autofocus class="c-input_input js-validate_target">
+									<input type="text" name="id" required minlength="4" maxlength="20" pattern="[a-zA-Z0-9]+" tabindex="1" autofocus class="c-input_input js-validate_target">
 									<span class="c-input_error js-validate_error"></span>
 									<span class="c-input_note">※半角英数字</span>
 								</span>
@@ -54,5 +54,5 @@ function index() {
 		</div>
 		<!--form-->
 	</div>
-	<!--main-->
+	<!--content-->
 <?php } ?>

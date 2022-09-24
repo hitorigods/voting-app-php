@@ -8,6 +8,7 @@ function index($topics) {
 	<div class="g-title">
 		<h1 class="g-title_name">過去の投稿</h1>
 	</div>
+	<!--title-->
 
 	<div class="c-articles">
 		<?php if (count($topics) > 0) : ?>
@@ -25,6 +26,7 @@ function index($topics) {
 			</div>
 		<?php endif; ?>
 	</div>
+	<!--articles-->
 <?php
 
 }
