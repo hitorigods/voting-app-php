@@ -2,6 +2,8 @@
 
 PHP、Apache、MySQL の Docker 環境でのノーフレームワーク構築
 
+![ER図](https://raw.githubusercontent.com/hitorigods/voting-app-php/bb62b3c74d2d3f0250aa92cdc0912c8742000a7e/!_MATERIAL/db-er.png)
+
 ## docker 起動
 
 ```
