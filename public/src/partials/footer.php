@@ -15,7 +15,7 @@ function footer() {
 	<!--footer-->
 
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-	<script src="<?php echo BASE_JS_PATH; ?>script.js"></script>
+	<script src="<?php echo BASE_JS_PATH; ?>script.js<?php echo (ENV_TYPE === 'local') ? '?' . time() : ''; ?>"></script>
 	</body>
 
 	</html>

@@ -29,9 +29,14 @@ class DataSource {
 	public const CLS = 'cls';
 
 	// public function __construct($host = 'localhost', $port = '8081', $dbName = 'app', $username = 'root', $password = 'root') {
-	public function __construct($host = 'db', $port = '8081', $dbName = 'app', $username = 'root', $password = 'root') {
-		// $dsn = "mysql:host={$host};port={$port};dbname={$dbName};charset=utf8;";
-		$dsn = "mysql:host={$host};dbname={$dbName};charset=utf8;";
+	public function __construct($host = ENV_HOST, $port = ENV_PORT, $dbName = ENV_DB, $username = ENV_USER, $password = ENV_PASS) {
+
+		if (ENV_TYPE === 'local') {
+			$dsn = "mysql:host={$host};dbname={$dbName};charset=utf8;";
+		} else {
+			$dsn = "mysql:host={$host};port={$port};dbname={$dbName};charset=utf8;";
+		}
+
 		$this->conn = PDOSingleton::getInstance($dsn, $username, $password);
 	}
 

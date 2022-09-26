@@ -1884,7 +1884,6 @@ html.is-sessio_no-concerned {
 .c-list_box {
   display: block;
   position: relative;
-  height: 100%;
 }
 .c-list_box:before, .c-list_box:after {
   content: "";

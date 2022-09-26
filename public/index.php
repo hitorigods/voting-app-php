@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 'On');
+
+require_once ($_SERVER['SERVER_NAME'] === 'localhost') ? '__env.local.php' : '__env.production.php';
 require_once 'config.php';
 
 // Library
