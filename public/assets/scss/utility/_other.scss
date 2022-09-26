@@ -1,0 +1,168 @@
+@charset "utf-8";
+
+@use '../function'as *;
+
+//* scrollbar */
+.u-scrollbar {
+	&::-webkit-scrollbar {
+		width: 7px;
+		height: 7px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background-color: $colorBg;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: $colorMain;
+	}
+}
+
+//* scrollon */
+.u-scrollon {
+	opacity: 0;
+	@include transition;
+	transform: translateY(30px);
+
+	@include breakMax($breakTablet) {}
+
+	&--type_reverse {
+		transform: translateY(-30px);
+	}
+
+	&.is-scrollon_active {
+		opacity: 1;
+		transform: translateY(0px);
+	}
+}
+
+//* typewriter */
+.u-typewriter {
+	&_string {
+		display: inline-block;
+
+		>* {
+			display: inline-block;
+			opacity: 0;
+			@include transition;
+
+			&.is-typewriter_active {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+//* anchor */
+.u-anchor {
+	padding-top: 80px;
+	margin-top: -80px;
+
+	@include breakMax($breakTablet) {}
+}
+
+//* img */
+img.u-img_border {
+	border: solid 1px $colorLine;
+
+	@include breakMax($breakTablet) {}
+}
+
+//* img */
+.u-figure {
+	a {
+		display: block;
+
+		&:hover {}
+	}
+
+	img {
+		max-width: 100%;
+	}
+
+	&_note {
+		display: none;
+		margin-top: 10px;
+		@include fontsize(12);
+		line-height: 1.5;
+		text-align: center;
+
+		@include breakMax($breakTablet) {
+			display: block;
+		}
+	}
+}
+
+//* area */
+.u-area {
+	padding: 30px;
+
+	@include breakMax($breakTablet) {
+		padding: 20px;
+	}
+}
+
+//* icon */
+.u-icon {
+	display: inline-block;
+	margin-right: .25em;
+	padding: 0.15em 0.5em;
+	background-color: $colorRed;
+	color: #fff;
+	@include fontsize(14);
+	line-height: 1.5;
+	border-radius: 4px;
+
+	@include breakMax($breakTablet) {}
+}
+
+//* table */
+.u-grid {
+	&_column {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		margin: -15px;
+
+		@include breakMax($breakTablet) {
+			// flex-direction: column;
+		}
+	}
+
+	&_cell {
+		display: block;
+		padding: 15px;
+	}
+}
+
+//* table */
+.u-table {
+	&_row {
+		.u-table--m-layout_column & {
+			@include breakMax($breakTablet) {
+				display: block;
+			}
+		}
+	}
+
+	&_head,
+	&_body {
+		.u-table--m-layout_column & {
+			@include breakMax($breakTablet) {
+				display: block;
+			}
+		}
+	}
+
+	&_head {
+		padding-right: 1em;
+
+	}
+
+	&_body {
+
+		.u-table--m-layout_column & {
+			@include breakMax($breakTablet) {}
+		}
+	}
+}

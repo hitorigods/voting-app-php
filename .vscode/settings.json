@@ -1,10 +1,23 @@
 {
 	"liveSassCompile.settings.formats": [
-		// This is Default.
 		{
-			"extensionName": ".css",
 			"format": "expanded",
-			"savePath": "~/../../assets/css/"
+			"extensionName": ".css",
+			"savePath": "~/../css/"
+		},
+		{
+			"format": "compressed",
+			"extensionName": ".min.css",
+			"savePath": "~/../css/"
 		}
-	]
+	],
+	"liveSassCompile.settings.excludeList": [
+		//対象外とするフォルダを指定
+		"**/node_modules/**",
+		".vscode/**",
+		".history/**",
+		"*/wp-**",
+		"*/wp/**"
+	],
+	"liveSassCompile.settings.autoprefix": ["> 3% in JP", "last 2 versions"]
 }

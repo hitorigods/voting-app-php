@@ -1,0 +1,85 @@
+@charset "utf-8";
+
+@use '../function'as *;
+
+//* table
+//* -------------------------------------------------- */
+.c-table {
+	@include breakMin($breakTablet) {}
+
+	&_table {
+		width: 100%;
+	}
+
+	&_tbody {
+		display: block;
+		margin: (-$padding) 0;
+
+		@include breakMin($breakTablet) {
+			display: table-row-group;
+			margin: 0;
+		}
+	}
+
+	&_row {
+		display: block;
+		position: relative;
+		padding: $padding 0;
+		border-top: solid 1px $colorFont;
+
+		@include breakMin($breakTablet) {
+			display: table-row;
+			padding: 0;
+		}
+
+		&:first-child {
+			border-top: none;
+		}
+	}
+
+	&_head,
+	&_body {
+		display: block;
+		position: relative;
+
+		@include breakMin($breakTablet) {
+			display: table-cell;
+			padding: 50px 0;
+		}
+
+		.c-table_row:first-child & {
+			padding-top: 0;
+		}
+
+		.c-table_row:last-child & {
+			padding-bottom: 0;
+		}
+	}
+
+	&_head {
+		@include breakMin($breakTablet) {
+			width: 250px;
+			padding-right: 50px;
+			text-align: right;
+		}
+	}
+
+	&_body {
+		margin-top: 10px;
+
+		@include breakMin($breakTablet) {
+			margin-top: 0;
+		}
+	}
+
+	&_title {
+		display: block;
+		@include fontsize(18);
+		font-weight: 500;
+		line-height: 1.5;
+
+		@include breakMin($breakTablet) {
+			@include fontsize(24);
+		}
+	}
+}

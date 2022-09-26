@@ -1,0 +1,121 @@
+@charset "utf-8";
+
+@use '../function'as *;
+@use '../utility'as *;
+
+//* heading
+//* -------------------------------------------------- */
+.c-heading {
+	display: block;
+	padding-bottom: 15px;
+	border-bottom: 4px double $colorFont;
+
+	@include breakMin($breakTablet) {}
+
+	a {
+		text-decoration: none;
+
+		&:after {
+			display: block;
+		}
+
+		&:hover {
+			color: $colorMain;
+		}
+
+	}
+
+	&_box {
+		display: block;
+		position: relative;
+		padding-right: 20px;
+
+		&:after {
+			content: '';
+			display: none;
+			position: absolute;
+			top: 50%;
+			right: 0;
+			width: 12px;
+			height: 12px;
+			border: solid 2px transparent;
+			border-top-color: $colorFont;
+			border-right-color: $colorFont;
+			transform: rotate(45deg) translate(-50%, -25%);
+			transform-origin: 50% 50%;
+		}
+
+		&:hover {
+			&:after {
+				right: -10px;
+				border-top-color: $colorMain;
+				border-right-color: $colorMain;
+			}
+		}
+	}
+
+	&_name {
+		display: block;
+		@include fontsize(24);
+		font-weight: 500;
+		line-height: 1.5;
+
+		@include breakMin($breakTablet) {
+			@include fontsize(34);
+		}
+	}
+}
+
+
+//* heading2
+//* -------------------------------------------------- */
+.c-heading2 {
+	@include breakMin($breakTablet) {}
+
+	a {
+		text-decoration: none;
+	}
+
+	&_label {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		@include breakMin($breakTablet) {}
+	}
+
+	&_name {
+		display: block;
+		position: relative;
+		padding: 0 10px;
+		@include fontsize(18);
+		font-weight: 700;
+		line-height: 1.5;
+		text-align: center;
+
+		@include breakMin($breakTablet) {
+			@include fontsize(21);
+		}
+
+		&:before,
+		&:after {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 50%;
+			width: 1px;
+			height: 30px;
+			background-color: $colorFont;
+		}
+
+		&:before {
+			left: 0;
+			transform: rotate(-30deg) translate(0, -50%);
+		}
+
+		&:after {
+			right: 0;
+			transform: rotate(30deg) translate(0, -50%);
+		}
+	}
+}

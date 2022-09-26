@@ -1,0 +1,76 @@
+@charset "utf-8";
+
+@use '../function'as *;
+@use '../utility'as *;
+
+//* button
+//* -------------------------------------------------- */
+.c-button {
+	@include breakMin($breakTablet) {}
+
+	a {
+		text-decoration: none;
+	}
+
+	a,
+	button {}
+
+	&_box {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		width: 100%;
+		height: 55px;
+		padding: 0 30px;
+		background-color: $colorMain;
+		color: $colorFont;
+		border-radius: 10px;
+
+		@include breakMin($breakTablet) {
+			height: 80px;
+		}
+
+		&:after {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 50%;
+			right: 20px;
+			width: 12px;
+			height: 12px;
+			border: solid 2px transparent;
+			border-top-color: $colorFont;
+			border-right-color: $colorFont;
+			transform: rotate(45deg) translate(-50%, -25%);
+			transform-origin: 50% 50%;
+		}
+
+		&:hover {
+			background-color: $colorFont;
+			color: $colorMain;
+
+			&:after {
+				right: 10px;
+				border-top-color: $colorMain;
+				border-right-color: $colorMain;
+			}
+		}
+
+		&[disabled] {
+			pointer-events: none;
+			background-color: $colorBg;
+		}
+	}
+
+	&_label {
+		display: block;
+		@include fontsize(18);
+		font-weight: 700;
+		letter-spacing: .05em;
+
+		@include breakMin($breakTablet) {
+			@include fontsize(20);
+		}
+	}
+}

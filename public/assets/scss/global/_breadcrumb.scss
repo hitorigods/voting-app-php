@@ -1,0 +1,94 @@
+@charset "utf-8";
+
+@use '../function'as *;
+@use '../utility'as *;
+
+//* breadcrumb
+//* -------------------------------------------------- */
+.g-breadcrumb {
+	@include breakMin($breakTablet) {}
+
+	&_inner {
+		@include breakMin($breakTablet) {}
+	}
+
+	&_frame {
+		overflow-x: auto;
+		word-break: keep-all;
+		white-space: nowrap;
+		-webkit-overflow-scrolling: touch;
+
+		@include breakMin($breakTablet) {}
+	}
+
+	&_items {
+		display: flex;
+
+		@include breakMin($breakTablet) {}
+	}
+
+	&_item {
+		display: flex;
+		@include fontsize(12);
+		line-height: 1.5;
+
+		@include breakMin($breakTablet) {}
+
+		a {
+			text-decoration: none;
+
+			&:hover {
+				opacity: $opacity;
+			}
+		}
+
+		&:before {
+			content: '>';
+			margin: 0 0.5em;
+			opacity: 0.5;
+		}
+
+		&:first-child {
+			&:before {
+				display: none;
+			}
+		}
+
+		&:last-child {
+			padding-right: $padding;
+
+			a {
+				color: $colorFont;
+				cursor: default;
+				pointer-events: none;
+
+				&:hover {
+					opacity: 1;
+				}
+			}
+		}
+	}
+
+	&_box {
+		display: inline-block;
+
+		@include breakMin($breakTablet) {}
+
+		.g-breadcrumb_item:first-child & {
+			color: $colorMain;
+		}
+	}
+
+	&_name {
+		font-weight: 400;
+		opacity: 0.5;
+
+		@include breakMin($breakTablet) {}
+
+		.g-breadcrumb_item:first-child & {}
+
+		.g-breadcrumb_item:last-child & {
+			opacity: 1;
+		}
+	}
+}

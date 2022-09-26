@@ -7,7 +7,9 @@ function index($topics) {
 	$topic = array_shift($topics);
 ?>
 	<div class="g-title">
-		<h1 class="g-title_name">投票アプリ</h1>
+		<div class="g-title_inner u-inner">
+			<h1 class="g-title_name">投票アプリ</h1>
+		</div>
 	</div>
 	<!--title-->
 
@@ -15,10 +17,10 @@ function index($topics) {
 		<?php
 		\partial\topic_single($topic, true);
 		?>
-		<section class="c-articles">
-			<div class="c-articles_inner u-inner">
+		<div class="c-list">
+			<div class="c-list_inner u-inner">
 				<?php if (count($topics) > 0) : ?>
-					<ul class="c-articles_items">
+					<ul class="c-list_items">
 						<?php
 						foreach ($topics as $topic) {
 							$url = get_url("topic/detail?topic_id={$topic->id}");
@@ -27,13 +29,13 @@ function index($topics) {
 						?>
 					</ul>
 				<?php else : ?>
-					<div class="c-articles_none">
-						<p class="c-articles_lead">トピックを投稿してみよう。</p>
+					<div class="c-list_none">
+						<p class="c-list_lead">トピックを投稿してみよう。</p>
 					</div>
 				<?php endif; ?>
 			</div>
-		</section>
-		<!--articles-->
+		</div>
+		<!--list-->
 	</div>
 	<!--content-->
 <?php } ?>

@@ -47,13 +47,13 @@ const Validate = {
 					$input.classList.add(Validate.class.invalid);
 
 					if ($input.validity.valueMissing) {
-						$error.textContent = '入力は必須です。';
+						$error.textContent = '※入力は必須です。';
 					} else if ($input.validity.tooShort) {
-						$error.textContent = `${$input.minLength}文字以上で入力してください。現在の文字数は${$input.value.length}です。`;
+						$error.textContent = `※${$input.minLength}文字以上で入力してください。現在の文字数は${$input.value.length}です。`;
 					} else if ($input.validity.tooLong) {
-						$error.textContent = `${$input.maxLength}文字以下で入力してください。現在の文字数は${$input.value.length}です。`;
+						$error.textContent = `※${$input.maxLength}文字以下で入力してください。現在の文字数は${$input.value.length}です。`;
 					} else if ($input.validity.patternMismatch) {
-						$error.textContent = '半角英数字で入力してください。';
+						$error.textContent = '※半角英数字で入力してください。';
 					} else {
 					}
 				}
@@ -108,7 +108,7 @@ const Graph = {
 					datasets: [
 						{
 							data: [1],
-							backgroundColor: ['#9ca3af'],
+							backgroundColor: ['#e3e3e3'],
 						},
 					],
 				};
@@ -118,7 +118,7 @@ const Graph = {
 					datasets: [
 						{
 							data: [likes, dislikes],
-							backgroundColor: ['#34d399', '#f87171'],
+							backgroundColor: ['#7fc73b', '#c73b3b'],
 						},
 					],
 				};

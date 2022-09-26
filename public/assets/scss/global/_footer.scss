@@ -1,0 +1,38 @@
+@charset "utf-8";
+
+@use '../function'as *;
+@use '../utility'as *;
+
+//* footer
+//* -------------------------------------------------- */
+.g-footer {
+	display: block;
+	margin-top: 60px;
+	height: 60px;
+	border-top: 1px solid $colorFont;
+
+	@include breakMin($breakTablet) {
+		margin-top: 100px;
+		height: 100px;
+	}
+
+	&_inner {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+	}
+
+	&_copy {
+		display: block;
+		@include fontsize(12);
+		line-height: 1.5;
+		text-align: center;
+
+		@include breakMin($breakTablet) {
+			@include fontsize(14);
+
+		}
+	}
+}

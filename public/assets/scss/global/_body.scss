@@ -1,0 +1,66 @@
+@charset "utf-8";
+
+@use '../function'as *;
+@use '../utility'as *;
+
+html {}
+
+html.is-menu_open {
+	@include breakMax($breakTablet) {
+		overflow: hidden !important;
+	}
+}
+
+html.is-sessio_no-concerned {
+	overflow: hidden;
+
+	@include breakMin($breakTablet) {}
+}
+
+.g-body {
+	background: #fff;
+	color: $colorFont;
+
+	@include breakMin($breakTablet) {}
+
+	@include breakMin($breakTablet) {}
+
+	@media print {
+		background-image: none;
+		background-color: #fff;
+	}
+}
+
+.g-wrapper {
+	overflow: hidden;
+
+	@media print {}
+
+	@include breakMin($breakTablet) {}
+}
+
+//* container
+//* -------------------------------------------------- */
+.g-container {
+	@include breakMin($breakTablet) {}
+}
+
+//* content
+//* -------------------------------------------------- */
+.g-content {
+	margin-top: 50px;
+
+	@include breakMin($breakTablet) {
+		margin-top: 80px;
+	}
+}
+
+//* main
+//* -------------------------------------------------- */
+.g-main {
+	min-height: calc(100vh - 300px);
+	min-height: calc(100svh - 300px);
+	padding-top: 40px;
+
+	@include breakMin($breakTablet) {}
+}

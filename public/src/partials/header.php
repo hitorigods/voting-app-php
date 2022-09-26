@@ -16,10 +16,13 @@ function header() {
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>投票アプリ</title>
 
-		<link rel="stylesheet" href="<?php echo BASE_CSS_PATH; ?>style.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@100;300;400;500;700;900&family=Roboto:wght@100;300;400;500;700;900&family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="<?php echo BASE_CSS_PATH; ?>style.min.css">
 	</head>
 
-	<body>
+	<body class="g-body">
 		<header class="g-header">
 			<div class="g-header_inner u-inner">
 				<div class="g-header_main">
@@ -28,16 +31,6 @@ function header() {
 					</p>
 				</div>
 				<div class="g-header_side">
-					<div class="g-header_status">
-						<?php
-						if (Auth::isLogin()) {
-							echo 'ログイン中です。';
-						} else {
-							echo 'ログインしてください。';
-						}
-						?>
-					</div>
-
 					<nav class="g-header_nav g-nav">
 						<ul class="g-nav_items">
 							<?php if (Auth::isLogin()) : ?>
@@ -71,6 +64,15 @@ function header() {
 						</ul>
 					</nav>
 					<!--nav-->
+					<p class="g-header_status">
+						<?php
+						if (Auth::isLogin()) {
+							echo 'ログインしています。';
+						} else {
+							echo 'ログインしてアンケートに参加しよう！';
+						}
+						?>
+					</p>
 				</div>
 			</div>
 		</header>

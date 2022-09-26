@@ -2,6 +2,8 @@
 
 PHP、Apache、MySQL の Docker 環境でのノーフレームワーク構築
 
+## データベース
+
 ![ER図](https://github.com/hitorigods/voting-app-php/blob/main/!_MATERIAL/db-er.png?raw=true)
 
 ## docker 起動
@@ -100,4 +102,4 @@ docker-compose exec public php -v
 - ENV 設定
 - 公開サーバーを用意してアップ
   - サーバー選定
-  - 自動デプロイできる？
+  - 自動デプロイ？

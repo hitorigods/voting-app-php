@@ -1,0 +1,133 @@
+@charset "utf-8";
+
+@use '../function'as *;
+
+//* text */
+.u-text_normal {
+	font-weight: 300;
+}
+
+.u-text_bold {
+	font-weight: 700;
+}
+
+.u-text_italic {
+	font-style: italic;
+}
+
+.u-text_center {
+	text-align: center;
+}
+
+.u-text_left {
+	text-align: left;
+}
+
+.u-text_right {
+	text-align: right;
+}
+
+.u-text_sup {
+	font-size: 70%;
+	vertical-align: top;
+	position: relative;
+	top: -0.1em;
+}
+
+.u-text_sub {
+	font-size: 70%;
+	vertical-align: bottom;
+	position: relative;
+	top: 0.1em;
+}
+
+.u-text_indent {
+	text-indent: 1em;
+}
+
+.u-text_large {
+	font-size: 110%;
+}
+
+.u-text_small {
+	font-size: 80%;
+}
+
+@include breakMax($breakTablet) {
+	.u_m-text_center {
+		text-align: center;
+	}
+
+	.u_m-text_left {
+		text-align: left;
+	}
+
+	.u_m-text_right {
+		text-align: right;
+	}
+
+	.u_m-text_large {
+		font-size: 110%;
+	}
+
+	.u_m-text_small {
+		font-size: 80%;
+	}
+}
+
+.u-text_marker {
+	background: linear-gradient(transparent 60%, $colorMain 60%);
+}
+
+//* color */
+.u-color_default {
+	color: $colorFont;
+}
+
+.u-color_main {
+	color: $colorMain;
+}
+
+.u-color_red {
+	color: #f00;
+}
+
+//* lead */
+.u-lead {
+	@include fontsize(15);
+	line-height: 2;
+	text-align: justify;
+
+	@include breakMax($breakTablet) {}
+
+	a {
+		color: $colorMain;
+
+		&:hover {}
+
+		&[target='_blank'] {
+			&:after {}
+		}
+	}
+}
+
+.u-lead2 {
+	@extend .u-lead;
+	@include fontsize(14);
+}
+
+.u-text {
+	@extend .u-lead;
+	@include fontsize(12);
+}
+
+.u-copy {
+	@extend .u-lead;
+	@include fontsize(18);
+	font-weight: 700;
+}
+
+.u-copy2 {
+	@extend .u-copy;
+	@include fontsize(20);
+}

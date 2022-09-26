@@ -26,24 +26,25 @@ class Massage extends AbstractModel {
 	public static function flush() {
 		try {
 			$messages_with_type = static::getSessionAndFlush() ?? [];
+			if ($messages_with_type) {
+				echo '<div class="g-message">';
+				echo '<ul>';
 
-			echo '<div class="g-message">';
-			echo '<ul>';
+				foreach ($messages_with_type as $type => $messages) {
+					if ($type === static::DEBUG && !DEBUG) {
+						continue;
+					}
 
-			foreach ($messages_with_type as $type => $messages) {
-				if ($type === static::DEBUG && !DEBUG) {
-					continue;
+					$className = $type === static::INFO ? 'is-message_info' : 'is-message_error';
+
+					foreach ($messages as $message) {
+						echo "<li class='is-type_{$type}'>{$message}</li>";
+					}
 				}
 
-				$className = $type === static::INFO ? 'is-message_info' : 'is-message_error';
-
-				foreach ($messages as $message) {
-					echo "<li class='is-message_{$type}'>{$type}:{$message}</li>";
-				}
+				echo '</ul>';
+				echo '</div>';
 			}
-
-			echo '</ul>';
-			echo '</div>';
 		} catch (Throwable $e) {
 			UserModel::clearSession();
 			Massage::push(Massage::DEBUG, $e->getMessage());
