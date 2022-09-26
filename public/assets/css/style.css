@@ -1392,6 +1392,14 @@ html.is-sessio_no-concerned {
         -ms-flex-pack: justify;
             justify-content: space-between;
     height: 100px;
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
+@media screen and (min-width: 1px) and (max-width: 1320px) {
+  .g-header_inner {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 .g-header_main {
@@ -1881,13 +1889,16 @@ html.is-sessio_no-concerned {
 .c-list_item a {
   text-decoration: none;
 }
+.c-list_item a:before, .c-list_item a:after {
+  display: block;
+}
 .c-list_box {
   display: block;
   position: relative;
 }
 .c-list_box:before, .c-list_box:after {
   content: "";
-  display: block;
+  display: none;
   position: absolute;
 }
 .c-list_box:before {
@@ -1946,7 +1957,7 @@ html.is-sessio_no-concerned {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
-    padding: 20px 85px 20px 50px;
+    padding: 20px 50px;
   }
 }
 .c-list_column:before, .c-list_column:after {
@@ -1978,6 +1989,11 @@ html.is-sessio_no-concerned {
   right: 0;
   border-bottom-color: #1b1b1b;
   border-right-color: #1b1b1b;
+}
+@media screen and (min-width: 1023px) {
+  a .c-list_column {
+    padding-right: 85px;
+  }
 }
 .c-list_head {
   display: -webkit-box;
@@ -2731,14 +2747,14 @@ input:checked + .c-radio_icon::before {
   margin-top: 0;
 }
 .c-counts--size_small .c-counts_box {
-  width: 80px;
-  height: 80px;
+  width: 65px;
+  height: 65px;
   border-width: 3px;
 }
 @media screen and (min-width: 1023px) {
   .c-counts--size_small .c-counts_box {
-    width: 65px;
-    height: 65px;
+    width: 80px;
+    height: 80px;
   }
 }
 .c-counts_item--type_like .c-counts_box {

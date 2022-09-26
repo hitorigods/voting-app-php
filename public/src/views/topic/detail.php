@@ -21,7 +21,7 @@ function index($topic, $comments) {
 							$agreeType = $comment->agree ? 'enable' : 'disable';
 						?>
 							<li class="c-list_item">
-								<a href="/topic/edit?topic_id=4" class="c-list_box">
+								<div class="c-list_box">
 									<div class="c-list_column">
 										<div class="c-list_head">
 											<p class="c-list_group c-list_group--type_<?php echo $agreeType; ?>"><?php echo $agreeLabel; ?></p>
@@ -33,7 +33,7 @@ function index($topic, $comments) {
 											<?php endif; ?>
 										</div>
 									</div>
-								</a>
+								</div>
 							</li>
 						<?php endforeach; ?>
 					</ul>
@@ -43,7 +43,6 @@ function index($topic, $comments) {
 		<?php
 		endif;
 		?>
-	</div>
 	</div>
 	<!--content-->
 <?php

@@ -46,7 +46,7 @@ function topic_main($topic, $isFromHome) {
 		<!--heading-->
 		<p class="c-single_note">
 			<?php if (!empty($topic->nickname)) { ?>
-				<span class="c-single_text">Posted by <?php echo $topic->nickname; ?></span>
+				<span class="c-single_text">by <?php echo $topic->nickname; ?></span>
 			<?php } ?>
 			<?php if (isset($topic->views)) { ?>
 				<span class="c-single_text"><strong class="c-single_number"><?php echo $topic->views; ?></strong> views</span>

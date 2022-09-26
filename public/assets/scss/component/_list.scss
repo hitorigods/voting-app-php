@@ -33,18 +33,22 @@
 			text-decoration: none;
 
 			&:hover {}
+
+			&:before,
+			&:after {
+				display: block;
+			}
 		}
 	}
 
 	&_box {
 		display: block;
 		position: relative;
-		// height: 100%;
 
 		&:before,
 		&:after {
 			content: '';
-			display: block;
+			display: none;
 			position: absolute;
 		}
 
@@ -101,7 +105,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			padding: 20px 85px 20px 50px;
+			padding: 20px 50px;
 		}
 
 		&:before,
@@ -136,6 +140,12 @@
 			border-right-color: $colorFont;
 
 			a:hover & {}
+		}
+
+		a & {
+			@include breakMin($breakTablet) {
+				padding-right: 85px;
+			}
 		}
 	}
 
