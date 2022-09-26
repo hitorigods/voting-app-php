@@ -2,7 +2,7 @@
 
 PHP、Apache、MySQL の Docker 環境でのノーフレームワーク構築
 
-## Releases UEL
+## Releases
 
 http://hitorigods.s223.xrea.com/
 
