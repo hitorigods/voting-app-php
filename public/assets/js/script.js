@@ -12,39 +12,50 @@ const Validate = {
 		invalid: 'is-validate_invalid',
 	},
 	attr: {},
-	init: () => {
-		$targets = document.querySelectorAll(Validate.selector.target);
+	submit($element) {
+		const $submit = $element.querySelector('[type="submit"]');
+
+		if ($element.checkValidity()) {
+			$element.classList.add(this.class.valid);
+			$element.classList.remove(this.class.invalid);
+			$submit.removeAttribute('disabled');
+		} else {
+			$element.classList.remove(this.class.valid);
+			$element.classList.add(this.class.invalid);
+			$submit.setAttribute('disabled', true);
+		}
+	},
+	init() {
+		$targets = document.querySelectorAll(this.selector.target);
 		if (!$targets) {
 			return;
 		}
 
-		$elements = document.querySelectorAll(Validate.selector.element);
+		$elements = document.querySelectorAll(this.selector.element);
 		if (!$elements) {
 			return;
 		}
 		$elements.forEach(($element) => {
-			Validate.submit($element);
+			this.submit($element);
 		});
 
 		$targets.forEach(($target) => {
 			$target.addEventListener('input', (event) => {
 				const $input = event.currentTarget;
-				const $error = $input.parentElement.querySelector(
-					Validate.selector.error
-				);
+				const $error = $input.parentElement.querySelector(this.selector.error);
 
 				if (!$error) {
 					return;
 				}
 
 				if ($input.checkValidity()) {
-					$input.classList.add(Validate.class.valid);
-					$input.classList.remove(Validate.class.invalid);
+					$input.classList.add(this.class.valid);
+					$input.classList.remove(this.class.invalid);
 
 					$error.textContent = '';
 				} else {
-					$input.classList.remove(Validate.class.valid);
-					$input.classList.add(Validate.class.invalid);
+					$input.classList.remove(this.class.valid);
+					$input.classList.add(this.class.invalid);
 
 					if ($input.validity.valueMissing) {
 						$error.textContent = '※入力は必須です。';
@@ -58,26 +69,12 @@ const Validate = {
 					}
 				}
 
-				const $element = $input.closest(Validate.selector.element);
-				Validate.submit($element);
+				const $element = $input.closest(this.selector.element);
+				this.submit($element);
 			});
 		});
 	},
-	submit: ($element) => {
-		const $submit = $element.querySelector('[type="submit"]');
-
-		if ($element.checkValidity()) {
-			$element.classList.add(Validate.class.valid);
-			$element.classList.remove(Validate.class.invalid);
-			$submit.removeAttribute('disabled');
-		} else {
-			$element.classList.remove(Validate.class.valid);
-			$element.classList.add(Validate.class.invalid);
-			$submit.setAttribute('disabled', true);
-		}
-	},
-};
-Validate.init();
+}.init();
 
 /**
  * Graph
@@ -90,16 +87,16 @@ const Graph = {
 		likes: 'data-graph-likes',
 		dislikes: 'data-graph-dislikes',
 	},
-	init: () => {
-		$elements = document.querySelectorAll(Graph.selector.element);
+	init() {
+		$elements = document.querySelectorAll(this.selector.element);
 		if (!$elements) {
 			return;
 		}
 		$elements.forEach(($element) => {
 			const ctx = $element.getContext('2d');
 
-			const likes = $element.attributes[Graph.attr.likes].value;
-			const dislikes = $element.attributes[Graph.attr.dislikes].value;
+			const likes = $element.attributes[this.attr.likes].value;
+			const dislikes = $element.attributes[this.attr.dislikes].value;
 			let data;
 
 			if (likes == 0 && dislikes == 0) {
@@ -138,5 +135,4 @@ const Graph = {
 			});
 		});
 	},
-};
-Graph.init();
+}.init();

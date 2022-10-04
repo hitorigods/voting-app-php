@@ -98,6 +98,22 @@ docker-compose exec public php -v
 }
 ```
 
+## サーバーアップ
+
+`/public/env.production.php`を用意してサーバー内容に合わせた下記を記入
+
+```
+<?php
+
+define('ENV_TYPE', 'production');
+
+define('ENV_DB', '*****'); //DB名
+define('ENV_USER', '*****'); //DBユーザー
+define('ENV_PASS', '*****'); //DBパスワード
+define('ENV_HOST', '*****'); //ホスト localhost 等
+define('ENV_PORT', *****); //ポート 3306 等
+```
+
 ## TODO
 
 - ~~DB の IP が起動の度に変わるので動的に設置する~~
